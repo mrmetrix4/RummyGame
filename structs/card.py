@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from pydantic import BaseModel, validator
 from enum import Enum, auto
 
 
@@ -9,7 +9,12 @@ class CardType(Enum):
     CLUBS = auto()
 
 
-@dataclass
-class Card:
+class Card(BaseModel):
     number: int
     type: CardType
+
+    @validator('number')
+    def validate_number(cls, v):
+        if v < 1 or v > 13:
+            raise ValueError('Card number must be 0 to 13')
+        return v

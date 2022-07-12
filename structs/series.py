@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from pydantic import BaseModel
 from typing import List
 from enum import Enum, auto
 
@@ -11,7 +11,6 @@ class SeriesType(Enum):
     COLOR = auto()
 
 
-@dataclass
-class Series:
+class Series(BaseModel):
     cards: List[Card]
     type: SeriesType

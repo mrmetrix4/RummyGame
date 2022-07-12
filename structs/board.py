@@ -1,10 +1,9 @@
-from dataclasses import dataclass
+from pydantic import BaseModel
 from typing import List
 
 from structs.series import Series
 
 
-@dataclass
-class Board:
+class Board(BaseModel):
     # TODO: singleton
-    cards: List[Series]
+    series: List[Series]
